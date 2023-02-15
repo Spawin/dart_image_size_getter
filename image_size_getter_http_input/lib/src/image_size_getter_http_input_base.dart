@@ -10,9 +10,9 @@ String httpCachePath = '';
 class HttpInput extends AsyncImageInput {
   HttpInput._(this.uri, this.headResponse);
 
-  static Future<HttpInput> createHttpInput(String url) async {
+  static Future<HttpInput> createHttpInput(String url, {Map<String, String>? headers}) async {
     final uri = Uri.parse(url);
-    final headResponse = await http.head(uri);
+    final headResponse = await http.head(uri, headers:headers);
     return HttpInput._(uri, headResponse);
   }
 
